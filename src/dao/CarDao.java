@@ -91,4 +91,30 @@ public class CarDao {
 		}
 		return 0;
 	}
+	//删除车型车辆
+	public int deleteByType(int typeid)
+	{
+		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
+		String sql = "delete from cars where typeid=?";
+		try {
+			return runner.update(sql, typeid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;	
+	}
+	//插入车辆
+		public int insertCar(Car car)
+		{
+			QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
+			String sql="insert into cars values(?,?,?,?,?,?,?,?,?)";
+			try {
+				return runner.update(sql,car.getCarID(),car.getDisplacement(),car.getMileage(),car.getPrice(),car.getReleaseDate(),car.getLicenceDate(),car.getCluth(),0,car.getTypeID());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 0;
+		}
 }

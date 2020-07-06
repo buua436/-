@@ -15,7 +15,7 @@ public class UserDao {
 	public int insertUser(User user)
 	{
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql="insert into user values(?,?,?,?)";
+		String sql="insert into users values(?,?,?,?)";
 		try {
 			return runner.update(sql,user.getUserName(),user.getPassWord(),user.getUserMoney(),user.getYesOrno());
 		} catch (SQLException e) {

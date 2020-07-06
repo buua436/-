@@ -24,4 +24,31 @@ public class CarTypeDao {
 		}
 		return null;
 	}
+	//插入车型
+	public int insertCarType(CarType type)
+	{
+		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
+		String sql="insert into cartype values(?,?,?)";
+		try {
+			return runner.update(sql,type.getBrandID(),type.getTypeName(),type.getBrandID());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	//删除车型
+	public int deleteCarType(CarType type)
+	{
+		new CarDao().deleteByType(type.getTypeID());
+		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
+		String sql = "delete from cartype where typeid=?";
+		try {
+			return runner.update(sql, type.getTypeID());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;	
+	}
 }

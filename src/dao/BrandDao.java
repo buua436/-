@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import bean.Brand;
 import bean.CarType;
+import bean.User;
 import utils.DaoUtils;
 
 public class BrandDao {
@@ -24,5 +25,17 @@ public class BrandDao {
 			}
 			return null;
 		}
-
+	//≤Â»Î∆∑≈∆
+		public int insertBrand(Brand brand)
+		{
+			QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
+			String sql="insert into brand values(?,?,?)";
+			try {
+				return runner.update(sql,brand.getBrandID(),brand.getBrandName(),brand.getBremarks());
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 0;
+		}
 }
