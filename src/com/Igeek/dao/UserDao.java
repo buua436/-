@@ -1,4 +1,4 @@
-package dao;
+package com.Igeek.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import bean.User;
-import utils.DaoUtils;
+import com.Igeek.bean.User;
+import com.Igeek.utils.DaoUtils;
 
 
 public class UserDao {

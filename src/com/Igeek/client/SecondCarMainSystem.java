@@ -1,11 +1,11 @@
-package client;
+package com.Igeek.client;
 
 import java.awt.print.Printable;
 import java.util.List;
 import java.util.Scanner;
 
-import bean.Car;
-import dao.CarDao;
+import com.Igeek.bean.Car;
+import com. Igeek.dao.CarDao;
 
 /**
  * 系统界面
@@ -49,14 +49,14 @@ public class SecondCarMainSystem {
 		//根据价格区间查找回集合
 		int min=5;
 		int max = 10;
-		List<Car> list = cdao.searchByPrice(min,max);
+		List<Car> list = cdao.findByPrice(min,max);
 		printCarList(list);
 	}
 	
 	//查看最新10两二手车
 	private void lookNewCars() {
 		//查询结果
-		List<Car> list = cdao.lookNewCars();
+		List<Car> list = cdao.findAllCar();
 		
 		//打印车辆简单信息
 		printCarList(list);

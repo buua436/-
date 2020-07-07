@@ -1,4 +1,4 @@
-package bean;
+package com.Igeek.bean;
 
 public class Brand {
 	//Æ·ÅÆ±àºÅ

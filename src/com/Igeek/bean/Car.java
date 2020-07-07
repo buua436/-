@@ -1,4 +1,4 @@
-package bean;
+package com.Igeek.bean;
 
 import java.util.Date;
 

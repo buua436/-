@@ -1,4 +1,4 @@
-package dao;
+package com.Igeek.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -7,9 +7,9 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import bean.Car;
-import bean.CarType;
-import utils.DaoUtils;
+import com.Igeek.bean.Car;
+import com.Igeek.bean.CarType;
+import com.Igeek.utils.DaoUtils;
 
 public class CarDao {
 	// 最新发布的10两二手车
