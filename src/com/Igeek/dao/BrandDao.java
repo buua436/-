@@ -14,12 +14,12 @@ import com.Igeek.utils.DaoUtils;
 
 public class BrandDao {
 	//≤È—Ø∆∑≈∆
-		public Brand findByBrandId(int brandid) {
+		public List<Brand> findAllBrand() {
 			// TODO Auto-generated method stub
 			QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-			String sql = "select * from cartype where brandid=? ";
+			String sql = "select * from brand";
 			try {
-				return runner.query(sql, new BeanHandler<Brand>(Brand.class), brandid);
+				return runner.query(sql, new BeanListHandler<Brand>(Brand.class));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

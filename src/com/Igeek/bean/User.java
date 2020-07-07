@@ -8,7 +8,7 @@ public class User {
 	//用户电话
 	private String userTel;
 	//金额
-	private Double userMoney;
+	private double userMoney;
 	//是否是管理员
 	private int yesOrno;
 	
@@ -42,6 +42,14 @@ public class User {
 	public void setYesOrno(int yesOrno) {
 		this.yesOrno = yesOrno;
 	}
+	public User(String userName, String passWord, double userMoney, int yesOrno) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+		this.userMoney = userMoney;
+		this.yesOrno = yesOrno;
+	}
+	
 	
 	
 	

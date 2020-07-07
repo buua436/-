@@ -26,7 +26,7 @@ public class UserDao {
 		return 0;
 	}
 	//根据用户名查询用户
-	public User findByBrand(String name) {
+	public User findByName(String name) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select * from user where username=? ";
