@@ -6,7 +6,7 @@ public class User {
 	//密码
 	private String passWord;
 	//用户电话
-	private String userTel;
+	private String userTel="";
 	//金额
 	private double userMoney;
 	//是否是管理员
@@ -49,6 +49,10 @@ public class User {
 		this.userMoney = userMoney;
 		this.yesOrno = yesOrno;
 	}
+	public User() {
+		super();
+	}
+	
 	
 	
 	

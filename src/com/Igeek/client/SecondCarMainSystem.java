@@ -29,21 +29,22 @@ public class SecondCarMainSystem {
 	public void start() {
 		System.out.println("欢迎来到极客瓜子二手车市场....");
 		System.out.println("1.登录\t2.注册\t3.查看最新二手车\t4.搜索车辆\t5.退出系统");
-		String choose = in.next();
+		int choose = in.nextInt();
+		in.nextLine();
 		switch (choose) {
-		case "1":
+		case 1:
 			login();// 登录
 			break;
-		case "2":
+		case 2:
 			register();// 注册
 			break;
-		case "3":
+		case 3:
 			lookNewCars();// 查看最新二手车
 			break;
-		case "4":
+		case 4:
 			searchCars();// 搜索车辆
 			break;
-		case "5":
+		case 5:
 			exit();// 搜索退出系统
 			break;
 		default:
@@ -58,19 +59,20 @@ public class SecondCarMainSystem {
 		System.out.println("----------用户登录界面----------");
 		int random = (int) (1000 + Math.random() * 8999);
 		System.out.println("请输入用户名：");
-		String name = in.next();
+		String name = in.nextLine();
 		if (uDao.findByName(name) == null) {
 			System.out.println("该用户名未注册，请核对后重试。");
 			start();
 		} else {
 			System.out.println("请输入密码：");
-			String password = in.next();
+			String password = in.nextLine();
 			if (!uDao.findByName(name).getPassWord().equals(password)) {
 				System.out.println("密码有误，请重试");
 				start();// 回到主菜单
 			}
 			System.out.println("请输入验证码(" + random + ")：");
 			int userIn = in.nextInt();
+			in.nextLine();
 			while (random != userIn) {
 				random = (int) (1000 + Math.random() * 8999);
 				System.out.println("验证码输入有误，请重试。");
@@ -86,27 +88,29 @@ public class SecondCarMainSystem {
 	private void register() {
 		System.out.println("-----------新用户注册界面----------");
 		System.out.println("请输入用户名：");
-		String name = in.next();
+		String name = in.nextLine();
 		while (uDao.findByName(name).getUserName().equals(name)) {
 			System.out.println("用户名已存在");
 			System.out.println("请输入用户名：");
-			name = in.next();
+			name = in.nextLine();
 		}
 		System.out.println("请输入密码：");
-		String password = in.next();
+		String password = in.nextLine();
 		System.out.println("请确认密码：");
-		String checkpassword = in.next();
+		String checkpassword = in.nextLine();
 		while (!password.equals(checkpassword)) {
 			System.out.println("您两次输入的密码不一致，请重试");
 			System.out.println("请输入密码：");
-			password = in.next();
+			password = in.nextLine();
 			System.out.println("请确认密码：");
-			checkpassword = in.next();
+			checkpassword = in.nextLine();
 		}
 		System.out.println("请输入账户余额");
 		double money = in.nextDouble();
+		in.nextLine();
 		System.out.println("是否是管理员1.是 0.否");
 		int is = in.nextInt();
+		in.nextLine();
 		System.out.println("已将您的信息导入系统，当前您的账户有10000000.00RMB，尽情选购吧！");
 		uDao.insertUser(new User(name, password, money, is));
 		start();
@@ -116,19 +120,18 @@ public class SecondCarMainSystem {
 	public void searchCars() {
 		System.out.println("--------搜索车辆--------");
 		System.out.println("1.根据品牌搜索\n2.根据价格搜索\n3.根据上牌日期搜索\n4.返回主菜单");
-		Scanner in = new Scanner(System.in);
-		String choose = in.next();
+		int choose = in.nextInt();
 		switch (choose) {
-		case "1":
+		case 1:
 			searchByBrand();// 根据品牌搜索
 			break;
-		case "2":
+		case 2:
 			searchByPrice();// 根据价格搜索
 			break;
-		case "3":
+		case 3:
 			searchByDate();// 根据上牌日期搜索
 			break;
-		case "4":
+		case 4:
 			start();// 返回主菜单
 			break;
 		// 输入其它就返回
@@ -175,6 +178,7 @@ public class SecondCarMainSystem {
 	private void selectBrand(List<Brand> list) {
 		System.out.println("请选择:");
 		int x = in.nextInt();
+		in.nextLine();
 		printCarTypeList(cyDao.findByBrand(list.get(x - 1)));
 	}
 
@@ -192,10 +196,12 @@ public class SecondCarMainSystem {
 		}
 		selectCarType(list);
 	}
-	//选择车型
+
+	// 选择车型
 	private void selectCarType(List<CarType> list) {
 		System.out.println("请选择:");
 		int x = in.nextInt();
+		in.nextLine();
 		printCarList(cdao.findByBrand(list.get(x - 1)));
 	}
 
@@ -206,8 +212,10 @@ public class SecondCarMainSystem {
 		// 根据价格区间查找回集合
 		System.out.println("最小值:");
 		int min = in.nextInt();
+		in.nextLine();
 		System.out.println("最大值:");
 		int max = in.nextInt();
+		in.nextLine();
 		List<Car> list = cdao.findByPrice(min, max);
 		printCarList(list);
 	}
@@ -233,25 +241,25 @@ public class SecondCarMainSystem {
 		// TODO Auto-generated method stub
 		System.out.println("请输入汽车ID：");
 		int id = in.nextInt();
+		in.nextLine();
 		// 取数据库查
 		Car cars = cdao.findByCarId(id);
 		// 验证，显示员工数据
 		System.out.println(cars);
 		System.out.println("请选择:");
-		if(uNow==null)
-		{	
+		if (uNow == null) {
 			System.out.println("1.主菜单");
-			int x=in.nextInt();
-			if(x==1)
+			int x = in.nextInt();
+			in.nextLine();
+			if (x == 1)
 				start();
 			else
 				start();
-		}
-		else
-		{
+		} else {
 			System.out.println("1.购买\t2.主菜单");
-			int x=in.nextInt();
-			if(x==1)
+			int x = in.nextInt();
+			in.nextLine();
+			if (x == 1)
 				buy(cars);
 			else
 				start();
@@ -282,27 +290,28 @@ public class SecondCarMainSystem {
 		}
 		selectcar(list);
 	}
-	//输出详细信息
+
+	// 输出详细信息
 	private void selectcar(List<Car> list) {
 		System.out.println("请选择:");
 		int x = in.nextInt();
-		Car car = list.get(x-1);
+		in.nextLine();
+		Car car = list.get(x - 1);
 		System.out.println(car);
 		System.out.println("请选择:");
-		if(uNow==null)
-		{	
+		if (uNow == null) {
 			System.out.println("1.主菜单");
-			x=in.nextInt();
-			if(x==1)
+			x = in.nextInt();
+			in.nextLine();
+			if (x == 1)
 				start();
 			else
 				start();
-		}
-		else
-		{
+		} else {
 			System.out.println("1.购买\t2.主菜单");
-			x=in.nextInt();
-			if(x==1)
+			x = in.nextInt();
+			in.nextLine();
+			if (x == 1)
 				buy(car);
 			else
 				start();
@@ -310,21 +319,16 @@ public class SecondCarMainSystem {
 	}
 
 	private void buy(Car car) {
-		if(uNow.getUserMoney()<car.getPrice())
-		{
+		if (uNow.getUserMoney() < car.getPrice()) {
 			System.out.println("余额不足");
 			start();
-		}
-		else
-		{
-			int x=uDao.updateUser(uNow, uNow.getUserMoney()-car.getPrice());
-			uNow.setUserMoney(uNow.getUserMoney()-car.getPrice());
+		} else {
+			int x = uDao.updateUser(uNow, uNow.getUserMoney() - car.getPrice());
+			uNow.setUserMoney(uNow.getUserMoney() - car.getPrice());
 			cdao.updateIsBought(car.getCarID());
-			if(x==1)
+			if (x == 1)
 				System.out.println("购买成功");
 			start();
 		}
 	}
-
-	
 }

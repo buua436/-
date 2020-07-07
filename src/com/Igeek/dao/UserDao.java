@@ -27,7 +27,7 @@ public class UserDao {
 	public User findByName(String name) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "select * from user where username=? ";
+		String sql = "select * from users where username=? ";
 		try {
 			return runner.query(sql, new BeanHandler<User>(User.class),name);
 		} catch (SQLException e) {
