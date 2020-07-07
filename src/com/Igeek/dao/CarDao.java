@@ -13,7 +13,7 @@ import com.Igeek.utils.DaoUtils;
 
 public class CarDao {
 	// 最新发布的10两二手车
-	public List<Car> findAllCar() {
+	public List<Car> findLastedTenCars() {
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.isselled=0 order by releaseDate desc limit 10";
 		try {

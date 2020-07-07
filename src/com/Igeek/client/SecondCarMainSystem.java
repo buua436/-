@@ -56,7 +56,7 @@ public class SecondCarMainSystem {
 	//查看最新10两二手车
 	private void lookNewCars() {
 		//查询结果
-		List<Car> list = cdao.findAllCar();
+		List<Car> list = cdao.findLastedTenCars();
 		
 		//打印车辆简单信息
 		printCarList(list);
