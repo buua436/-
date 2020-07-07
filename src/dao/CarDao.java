@@ -13,7 +13,7 @@ import utils.DaoUtils;
 
 public class CarDao {
 	// 最新发布的10两二手车
-	public List<Car> lookNewCars() {
+	public List<Car> findAllCar() {
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.isselled=0 order by releaseDate desc limit 10";
 		try {
@@ -26,7 +26,7 @@ public class CarDao {
 	}
 
 	// 根据价格查询
-	public List<Car> searchByPrice(int min, int max) {
+	public List<Car> findByPrice(int min, int max) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.price between ? and ? and c.isselled=0 order by releaseDate desc limit 10";
@@ -40,7 +40,7 @@ public class CarDao {
 	}
 
 	// 根据车型查询
-	public List<Car> searchByBrand(CarType type) {
+	public List<Car> findByBrand(CarType type) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.typeid=? and c.isselled=0 order by releaseDate desc limit 10";
@@ -54,7 +54,7 @@ public class CarDao {
 	}
 
 	// 根据上牌日期查询
-	public List<Car> searchByDate(int firstYear, int firstMonth, int secondYear, int secondMonth) {
+	public List<Car> findByDate(int firstYear, int firstMonth, int secondYear, int secondMonth) {
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.isselled=0 and DATE_FORMAT(releaseDate,'%Y') BETWEEN ? and ? and DATE_FORMAT(releaseDate,'%m') BETWEEN ? and ? order by releaseDate desc limit 10";
 		try {
@@ -67,7 +67,7 @@ public class CarDao {
 	}
 
 	// 根据车辆Id查询
-	public Car searchByCarId(int id) {
+	public Car findByCarId(int id) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.carid=? and c.isselled=0 order by releaseDate desc limit 10";
