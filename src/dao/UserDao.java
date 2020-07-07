@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import bean.User;
@@ -25,12 +26,12 @@ public class UserDao {
 		return 0;
 	}
 	//根据用户名查询用户
-	public List<User> findByBrand(String name) {
+	public User findByBrand(String name) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select * from user where username=? ";
 		try {
-			return runner.query(sql, new BeanListHandler<User>(User.class),name);
+			return runner.query(sql, new BeanHandler<User>(User.class),name);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import bean.Car;
@@ -66,12 +67,12 @@ public class CarDao {
 	}
 
 	// 根据车辆Id查询
-	public List<Car> searchByCarId(int id) {
+	public Car searchByCarId(int id) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.carid=? and c.isselled=0 order by releaseDate desc limit 10";
 		try {
-			return runner.query(sql, new BeanListHandler<Car>(Car.class), id);
+			return runner.query(sql, new BeanHandler<Car>(Car.class), id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
