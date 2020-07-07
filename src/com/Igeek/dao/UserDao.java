@@ -40,7 +40,7 @@ public class UserDao {
 	}
 	
 	//更改用户余额
-	public int updateUser(User user,int balance)
+	public int updateUser(User user,double balance)
 	{
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
 		String sql="update user set balance=? where username=?";
@@ -52,5 +52,6 @@ public class UserDao {
 		}
 		return 0;
 	}
+
 	
 }

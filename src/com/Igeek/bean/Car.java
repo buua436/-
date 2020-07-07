@@ -99,8 +99,10 @@ public class Car {
 	public void setBought(boolean isBought) {
 		this.isBought = isBought;
 	}
-	
-	
-	
-
+	@Override
+	public String toString() {
+		return "Car [brandName=" + brandName + ", typeName=" + typeName + ", brandID=" + brandID + ", typeID=" + typeID
+				+ ", carID=" + carID + ", mileage=" + mileage + ", price=" + price + ", releaseDate=" + releaseDate
+				+ ", displacement=" + displacement + ", licenceDate=" + licenceDate + "]";
+	}
 }
