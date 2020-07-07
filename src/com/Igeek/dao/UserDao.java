@@ -1,11 +1,9 @@
 package com.Igeek.dao;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.Igeek.bean.User;
 import com.Igeek.utils.DaoUtils;
@@ -16,9 +14,9 @@ public class UserDao {
 	public int insertUser(User user)
 	{
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql="insert into users values(?,?,?,?)";
+		String sql="insert into users values(?,?,?,?,?)";
 		try {
-			return runner.update(sql,user.getUserName(),user.getPassWord(),user.getUserMoney(),user.getYesOrno());
+			return runner.update(sql,user.getUserName(),user.getPassWord(),user.getUserMoney(),user.getYesOrno(),user.getUserTel());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

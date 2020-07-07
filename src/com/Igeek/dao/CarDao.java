@@ -15,7 +15,7 @@ public class CarDao {
 	// 最新发布的10两二手车
 	public List<Car> findLastedTenCars() {
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.isselled=0 order by releaseDate desc limit 10";
+		String sql = "select c.* from car c where c.isselled=0 order by releaseDate desc limit 10";
 		try {
 			return runner.query(sql, new BeanListHandler<Car>(Car.class));
 		} catch (SQLException e) {
@@ -29,7 +29,7 @@ public class CarDao {
 	public List<Car> findByPrice(int min, int max) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.price between ? and ? and c.isselled=0 order by releaseDate desc limit 10";
+		String sql = "select c.* from car c where  c.price between ? and ? and c.isselled=0 order by releaseDate desc limit 10";
 		try {
 			return runner.query(sql, new BeanListHandler<Car>(Car.class), min, max);
 		} catch (SQLException e) {
@@ -43,7 +43,7 @@ public class CarDao {
 	public List<Car> findByBrand(CarType type) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.typeid=? and c.isselled=0 order by releaseDate desc limit 10";
+		String sql = "select c.* from car c where c.typeid=? and c.isselled=0 order by releaseDate desc limit 10";
 		try {
 			return runner.query(sql, new BeanListHandler<Car>(Car.class), type.getTypeID());
 		} catch (SQLException e) {
@@ -56,9 +56,9 @@ public class CarDao {
 	// 根据上牌日期查询
 	public List<Car> findByDate(int firstYear, int firstMonth, int secondYear, int secondMonth) {
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.isselled=0 and DATE_FORMAT(releaseDate,'%Y') BETWEEN ? and ? and DATE_FORMAT(releaseDate,'%m') BETWEEN ? and ? order by releaseDate desc limit 10";
+		String sql = "select c.* from car c where c.isselled=0 and DATE_FORMAT(releaseDate,'%Y') BETWEEN ? and ? and DATE_FORMAT(releaseDate,'%m') BETWEEN ? and ? order by releaseDate desc limit 10";
 		try {
-			return runner.query(sql, new BeanListHandler<Car>(Car.class));
+			return runner.query(sql, new BeanListHandler<Car>(Car.class),firstYear,secondYear,firstMonth,secondMonth);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class CarDao {
 	public Car findByCarId(int id) {
 		// TODO Auto-generated method stub
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "select c.*,b.brandName,t.typeName from cars c,brand b,cartype t where b.brandid=t.brandid and t.typeid=c.typeid and c.carid=? and c.isselled=0 order by releaseDate desc limit 10";
+		String sql = "select c.* from car c where c.carid=? and c.isselled=0 order by releaseDate desc limit 10";
 		try {
 			return runner.query(sql, new BeanHandler<Car>(Car.class), id);
 		} catch (SQLException e) {
@@ -83,7 +83,7 @@ public class CarDao {
 	// 卖出车辆
 	public int updateIsBought(int id) {
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "update cars set isselled=1 where carid=?";
+		String sql = "update car set isselled=1 where carid=?";
 		try {
 			return runner.update(sql, id);
 		} catch (SQLException e) {
@@ -96,7 +96,7 @@ public class CarDao {
 	public int deleteByType(int typeid)
 	{
 		QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-		String sql = "delete from cars where typeid=?";
+		String sql = "delete from car where typeid=?";
 		try {
 			return runner.update(sql, typeid);
 		} catch (SQLException e) {
@@ -109,9 +109,9 @@ public class CarDao {
 		public int insertCar(Car car)
 		{
 			QueryRunner runner = new QueryRunner(DaoUtils.dataSource);
-			String sql="insert into cars values(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into car values(?,?,?,?,?,?,?,?,?,?,?)";
 			try {
-				return runner.update(sql,car.getCarID(),car.getDisplacement(),car.getMileage(),car.getPrice(),car.getReleaseDate(),car.getLicenceDate(),car.getCluth(),0,car.getTypeID());
+				return runner.update(sql,car.getCarID(),car.getDisplacement(),car.getMileage(),car.getPrice(),car.getReleaseDate(),car.getLicenceDate(),car.getCluth(),0,car.getTypeID(),car.getBrandName(),car.getTypeName());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

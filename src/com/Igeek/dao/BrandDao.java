@@ -4,12 +4,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.Igeek.bean.Brand;
-import com.Igeek.bean.CarType;
-import com.Igeek.bean.User;
 import com.Igeek.utils.DaoUtils;
 
 public class BrandDao {

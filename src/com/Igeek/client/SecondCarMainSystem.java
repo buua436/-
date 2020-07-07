@@ -1,9 +1,7 @@
 package com.Igeek.client;
 
-import java.awt.print.Printable;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Random;
 
 import com.Igeek.bean.Brand;
 import com.Igeek.bean.Car;
@@ -238,6 +236,26 @@ public class SecondCarMainSystem {
 		// 取数据库查
 		Car cars = cdao.findByCarId(id);
 		// 验证，显示员工数据
+		System.out.println(cars);
+		System.out.println("请选择:");
+		if(uNow==null)
+		{	
+			System.out.println("1.主菜单");
+			int x=in.nextInt();
+			if(x==1)
+				start();
+			else
+				start();
+		}
+		else
+		{
+			System.out.println("1.购买\t2.主菜单");
+			int x=in.nextInt();
+			if(x==1)
+				buy(cars);
+			else
+				start();
+		}
 
 	}
 

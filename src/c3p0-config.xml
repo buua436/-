@@ -5,7 +5,7 @@
 	<default-config>
 		<!-- key value键值对 -->
 		<!--连接数据库的url  -->
-		<property name="jdbcUrl">jdbc:mysql://localhost:3306/test1?&amp;useSSL=false&amp;serverTimezone=UTC</property>
+		<property name="jdbcUrl">jdbc:mysql://localhost:3306/secondcar?&amp;useSSL=false&amp;serverTimezone=UTC</property>
 		<!-- 驱动类字符串 -->
 		<property name="driverClass">com.mysql.cj.jdbc.Driver</property>
 		<property name="user">root</property>
